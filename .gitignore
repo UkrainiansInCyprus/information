@@ -1,0 +1,7 @@
+# Python/venv/uv
+.venv/
+.cache/
+.python-version
+
+# Zensical
+site/

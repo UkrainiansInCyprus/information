@@ -1,0 +1,19 @@
+[project]
+name = "information"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Pavlo Pohorieltsev", email = "49622129+makisukurisu@users.noreply.github.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "zensical>=0.0.52",
+]
+
+[project.scripts]
+information = "information:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
