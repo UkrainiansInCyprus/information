@@ -9,7 +9,7 @@ Contributions are welcome to all sections of the repository, including:
 
 ## Building the site
 The site is built using [Zensical](https://zensical.org/). To build the site locally, you need to have [Python](https://www.python.org/downloads/) installed,
-preferably with [uv](https://docs.astral.sh/uv/), since it's used for locking the dependencies. (Alternatievly - you can run the [Devcontainer](https://containers.dev/) provided in this repository with your code editor)
+preferably with [uv](https://docs.astral.sh/uv/), since it's used for locking the dependencies. (Alternatively - you can run the [Devcontainer](https://containers.dev/) provided in this repository with your code editor)
 
 ### 1. Install dependencies
 Simply running:
