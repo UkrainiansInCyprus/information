@@ -4,7 +4,7 @@ You have a few ways of contributing to the repository:
 - Participating in the [Discussions](https://github.com/UkrainiansInCyprus/information/discussions);
 - Participating in the [Wiki](https://github.com/UkrainiansInCyprus/information/wiki);
 - Updating the source code:
-    - By making a change requestin an [Issue](https://github.com/UkrainiansInCyprus/information/issues);
+    - By making a change request in an [Issue](https://github.com/UkrainiansInCyprus/information/issues);
     - By proposing a change in a [Pull Request](https://github.com/UkrainiansInCyprus/information/pulls);
 - Contacting the maintainers directly via available channels (e.g. email, social media, etc).
 

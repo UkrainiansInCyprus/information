@@ -39,7 +39,9 @@
       "extensions": [
         "ms-python.python",
         "charliermarsh.ruff",
-        "zensical.zensical-studio"
+        "zensical.zensical-studio",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-ukrainian"
       ],
       "settings": {
         "[python]": {
