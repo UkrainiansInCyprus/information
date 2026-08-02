@@ -38,7 +38,8 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "zensical.zensical-studio"
       ],
       "settings": {
         "[python]": {

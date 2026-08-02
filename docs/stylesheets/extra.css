@@ -1,0 +1,40 @@
+[data-md-color-accent="uk-yellow"] {
+  --md-accent-fg-color: hsla(51, 100%, 50%, 1);
+  --md-accent-fg-color--transparent: hsla(51, 100%, 50%, 0.1);
+  --md-accent-bg-color: #000000de;
+  --md-accent-bg-color--light: #0000008a;
+}
+
+[data-md-color-accent="uk-yellow-light"] {
+  --md-accent-fg-color: hsla(51, 100%, 45%, 1);
+  --md-accent-fg-color--transparent: hsla(51, 100%, 45%, 0.1);
+  --md-accent-bg-color: #000000de;
+  --md-accent-bg-color--light: #0000008a;
+}
+
+[data-md-color-accent="uk-blue"] {
+  --md-accent-fg-color: hsla(211, 100%, 35.9%, 1);
+  --md-accent-fg-color--transparent: hsla(211, 100%, 35.9%, 0.1);
+  --md-accent-bg-color: #000000de;
+  --md-accent-bg-color--light: #0000008a;
+}
+
+[data-md-color-primary="uk-yellow"]{
+  --md-primary-fg-color: hsla(51, 100%, 50%, 1);
+  --md-primary-fg-color--light: hsla(51, 100%, 50%, 0.7);
+  --md-primary-fg-color--dark: hsla(51, 100%, 50%, 1);
+  --md-primary-bg-color: #fff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
+[data-md-color-primary="uk-blue"]{
+  --md-primary-fg-color: hsla(211, 100%, 35.9%, 1);
+  --md-primary-fg-color--light: hsla(211, 100%, 35.9%, 0.7);
+  --md-primary-fg-color--dark: hsla(211, 100%, 35.9%, 1);
+  --md-primary-bg-color: #fff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
+dfn {
+    text-decoration: underline dotted var(--md-accent-fg-color);
+}
