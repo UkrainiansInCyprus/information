@@ -86,4 +86,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${{ env.BRANCH }} --compatibility-date 2026-08-03
+          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${{ env.BRANCH }} --domain=${{ env.BRANCH }}.${{ env.PROJECT_NAME }}.ukrainiansincyprus.workers.dev --compatibility-date 2026-08-03
