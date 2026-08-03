@@ -34,7 +34,9 @@ on:
 
 permissions: {}
 
-concurrency: preview-${{ github.ref }}
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   changes:
@@ -62,22 +64,35 @@ jobs:
             - docs/**
             - .github/workflows/pr-docs.yaml
 
-  deploy:
+  build-and-deploy:
     needs: changes
-    if: needs.changes.outputs.docs == 'true'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    if: >-
+      needs.changes.outputs.docs == 'true' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
+      # Setup and build the docs
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
         with:
           python-version: 3.14
       - run: uv sync --no-dev
       - run: uv run zensical build --clean
-      - uses: rossjrw/pr-preview-action@v1
+      # Deploy the docs to Cloudflare Pages Preview
+      - uses: modelcontextprotocol/actions/cloudflare-pages-preview/deploy@2c9cb4f4db3d54f0fa17d3232ec93c0b56facb1c
         with:
-          source-dir: site
-          preview-branch: pr-preview
-          qr-code: true
+          directory: site/
+          project-name: information
+          api-token: ${{ secrets.CF_PAGES_PREVIEW_API_TOKEN }}
+          account-id: ${{ secrets.CF_PAGES_PREVIEW_ACCOUNT_ID }}
+
+  cleanup:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: modelcontextprotocol/actions/cloudflare-pages-preview/cleanup@2c9cb4f4db3d54f0fa17d3232ec93c0b56facb1c
+        with:
+          project-name: information
+          api-token: ${{ secrets.CF_PAGES_PREVIEW_API_TOKEN }}
+          account-id: ${{ secrets.CF_PAGES_PREVIEW_ACCOUNT_ID }}
