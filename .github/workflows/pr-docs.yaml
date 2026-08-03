@@ -94,12 +94,14 @@ jobs:
         run: |
           echo "name = \"information\"" > wrangler.toml
           echo "workers_dev = true" >> wrangler.toml
+          echo "preview_urls = true" >> wrangler.toml
       - name: Deploy to Cloudflare Pages
+        id: deploy
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy site/ --name=${{ env.PROJECT_NAME }} --tag=${{ steps.preview.outputs.short_sha }} --domain=${{ steps.preview.outputs.domain }} --compatibility-date 2026-08-03
+          command: deploy site/ --name=${{ env.PROJECT_NAME }} --tag=${{ steps.preview.outputs.short_sha }} --compatibility-date 2026-08-03
       - name: Comment preview URL on PR
         env:
           PREVIEW_DOMAIN: ${{ steps.preview.outputs.domain }}
@@ -118,7 +120,11 @@ jobs:
               `Host: ${previewDomain}`,
               `Commit: ${sha}`,
               '',
-              'This preview will be replaced with an expired placeholder when the PR is closed.'
+              'This preview will be replaced with an expired placeholder when the PR is closed.',
+              '',
+              'Deployment URL: ${{ steps.deploy.outputs.deployment-url }}',
+              '',
+              'Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}'
             ].join('\n');
 
             const { data: comments } = await github.rest.issues.listComments({
