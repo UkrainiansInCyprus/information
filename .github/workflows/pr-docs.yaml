@@ -86,4 +86,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy ./site --project-name=${{ env.PROJECT_NAME }} --branch=${{ env.BRANCH }}
+          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${{ env.BRANCH }} --compatibility-date 2026-08-03
