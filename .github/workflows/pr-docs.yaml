@@ -75,14 +75,15 @@ jobs:
       issues: write
     env:
       PROJECT_NAME: information
-      COMMIT_HASH: ${{ github.event.pull_request.head.sha }}
     steps:
       # Setup and build the docs
       - name: Compute preview identifiers
+        id: preview
         run: |
-          SHORT_SHA="$(printf '%s' "$COMMIT_HASH" | cut -c1-12)"
-          echo "SHORT_SHA=$SHORT_SHA" >> "$GITHUB_ENV"
-          echo "DOMAIN=${SHORT_SHA}-${PROJECT_NAME}.ukrainiansincyprus.workers.dev" >> "$GITHUB_ENV"
+          SHORT_SHA="$(printf '%s' "${{ github.event.pull_request.head.sha }}" | cut -c1-12)"
+          DOMAIN="${SHORT_SHA}-${PROJECT_NAME}.ukrainiansincyprus.workers.dev"
+          echo "short_sha=$SHORT_SHA" >> "$GITHUB_OUTPUT"
+          echo "domain=$DOMAIN" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
         with:
@@ -98,15 +99,17 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=$SHORT_SHA --domain=$DOMAIN --compatibility-date 2026-08-03
+          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${{ steps.preview.outputs.short_sha }} --domain=${{ steps.preview.outputs.domain }} --compatibility-date 2026-08-03
       - name: Comment preview URL on PR
+        env:
+          PREVIEW_DOMAIN: ${{ steps.preview.outputs.domain }}
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
         with:
           script: |
             const marker = '<!-- docs-preview-url -->';
             const prNumber = context.payload.pull_request.number;
             const sha = context.payload.pull_request.head.sha.slice(0, 7);
-            const previewDomain = process.env.DOMAIN;
+            const previewDomain = process.env.PREVIEW_DOMAIN;
             const previewUrl = `https://${previewDomain}`;
             const body = [
               marker,
