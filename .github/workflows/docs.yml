@@ -3,12 +3,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types:
-      - opened
-      - synchronize
-    branches:
-      - main
 
 permissions:
   contents: read
@@ -27,7 +21,7 @@ jobs:
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
         with:
           python-version: 3.14
-      - run: uv install --no-dev
+      - run: uv sync --no-dev
       - run: uv run zensical build --clean
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
