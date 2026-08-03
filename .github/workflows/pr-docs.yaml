@@ -99,7 +99,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${{ steps.preview.outputs.short_sha }} --domain=${{ steps.preview.outputs.domain }} --compatibility-date 2026-08-03
+          command: deploy site/ --name=${{ env.PROJECT_NAME }} --tag=${{ steps.preview.outputs.short_sha }} --domain=${{ steps.preview.outputs.domain }} --compatibility-date 2026-08-03
       - name: Comment preview URL on PR
         env:
           PREVIEW_DOMAIN: ${{ steps.preview.outputs.domain }}
