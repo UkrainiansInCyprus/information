@@ -78,8 +78,11 @@ jobs:
       COMMIT_HASH: ${{ github.event.pull_request.head.sha }}
     steps:
       # Setup and build the docs
-      - run: export SHORT_SHA="$(printf '%s' "$COMMIT_HASH" | cut -c1-12)"
-      - run: export DOMAIN=${SHORT_SHA}-${{ env.PROJECT_NAME }}.ukrainiansincyprus.workers.dev
+      - name: Compute preview identifiers
+        run: |
+          SHORT_SHA="$(printf '%s' "$COMMIT_HASH" | cut -c1-12)"
+          echo "SHORT_SHA=$SHORT_SHA" >> "$GITHUB_ENV"
+          echo "DOMAIN=${SHORT_SHA}-${PROJECT_NAME}.ukrainiansincyprus.workers.dev" >> "$GITHUB_ENV"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
         with:
@@ -97,20 +100,19 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=$SHORT_SHA --domain=$DOMAIN --compatibility-date 2026-08-03
       - name: Comment preview URL on PR
-        env:
-          PREVIEW_URL: https://${DOMAIN}
-          PREVIEW_DOMAIN: ${DOMAIN}
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
         with:
           script: |
             const marker = '<!-- docs-preview-url -->';
             const prNumber = context.payload.pull_request.number;
             const sha = context.payload.pull_request.head.sha.slice(0, 7);
+            const previewDomain = process.env.DOMAIN;
+            const previewUrl = `https://${previewDomain}`;
             const body = [
               marker,
-              `Docs preview is ready: ${process.env.PREVIEW_URL}`,
+              `Docs preview is ready: ${previewUrl}`,
               '',
-              `Host: ${process.env.PREVIEW_DOMAIN}`,
+              `Host: ${previewDomain}`,
               `Commit: ${sha}`,
               '',
               'This preview will be replaced with an expired placeholder when the PR is closed.'
