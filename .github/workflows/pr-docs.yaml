@@ -73,8 +73,13 @@ jobs:
     permissions:
       pull-requests: write
       issues: write
+    env:
+      PROJECT_NAME: information
+      COMMIT_HASH: ${{ github.event.pull_request.head.sha }}
     steps:
       # Setup and build the docs
+      - run: export SHORT_SHA="$(printf '%s' "$COMMIT_HASH" | cut -c1-12)"
+      - run: export DOMAIN=${SHORT_SHA}-${{ env.PROJECT_NAME }}.ukrainiansincyprus.workers.dev
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
         with:
@@ -86,20 +91,15 @@ jobs:
           echo "name = \"information\"" > wrangler.toml
           echo "workers_dev = true" >> wrangler.toml
       - name: Deploy to Cloudflare Pages
-        env:
-          PROJECT_NAME: information
-          BRANCH: ${{ github.event.pull_request.head.sha }}
-          PREVIEW_DOMAIN: ${{ github.event.pull_request.head.sha }}-information.ukrainiansincyprus.workers.dev
-          PREVIEW_URL: https://${{ github.event.pull_request.head.sha }}-information.ukrainiansincyprus.workers.dev
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${{ env.BRANCH }} --domain=${{ env.BRANCH }}-${{ env.PROJECT_NAME }}.ukrainiansincyprus.workers.dev --compatibility-date 2026-08-03
+          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${SHORT_SHA} --domain=${DOMAIN} --compatibility-date 2026-08-03
       - name: Comment preview URL on PR
         env:
-          PREVIEW_URL: https://${{ github.event.pull_request.head.sha }}-information.ukrainiansincyprus.workers.dev
-          PREVIEW_DOMAIN: ${{ github.event.pull_request.head.sha }}-information.ukrainiansincyprus.workers.dev
+          PREVIEW_URL: https://${DOMAIN}
+          PREVIEW_DOMAIN: ${DOMAIN}
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
         with:
           script: |
