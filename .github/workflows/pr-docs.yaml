@@ -124,7 +124,7 @@ jobs:
               '',
               'Deployment URL: ${{ steps.deploy.outputs.deployment-url }}',
               '',
-              'Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}'
+              'Deployment ID: ${{ steps.deploy.outputs.pages-deployment-id }}',
             ].join('\n');
 
             const { data: comments } = await github.rest.issues.listComments({
