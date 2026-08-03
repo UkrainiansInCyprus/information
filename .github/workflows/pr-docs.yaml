@@ -95,7 +95,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=${SHORT_SHA} --domain=${DOMAIN} --compatibility-date 2026-08-03
+          command: deploy ./site --name=${{ env.PROJECT_NAME }} --tag=$SHORT_SHA --domain=$DOMAIN --compatibility-date 2026-08-03
       - name: Comment preview URL on PR
         env:
           PREVIEW_URL: https://${DOMAIN}
