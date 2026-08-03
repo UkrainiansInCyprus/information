@@ -81,6 +81,10 @@ jobs:
           python-version: 3.14
       - run: uv sync --no-dev
       - run: uv run zensical build --clean
+      - name: Create wrangler.conf
+        run: |
+          echo "name = \"information\"" > wrangler.toml
+          echo "workers_dev = true" >> wrangler.toml
       - name: Deploy to Cloudflare Pages
         env:
           PROJECT_NAME: information
