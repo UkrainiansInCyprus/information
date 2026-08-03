@@ -71,10 +71,7 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     permissions:
-      deployments: write
-      issues: write
-      pull-requests: write
-      statuses: write
+      pull-requests: read
     steps:
       # Setup and build the docs
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -86,7 +83,7 @@ jobs:
       - name: Deploy to Cloudflare Pages
         env:
           PROJECT_NAME: information
-          BRANCH: ${{ github.event.workflow_run.head_sha }}
+          BRANCH: ${{ github.event.pull_request.head.sha }}
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
