@@ -70,6 +70,11 @@ jobs:
       needs.changes.outputs.docs == 'true' &&
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+      issues: write
+      pull-requests: write
+      statuses: write
     steps:
       # Setup and build the docs
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
