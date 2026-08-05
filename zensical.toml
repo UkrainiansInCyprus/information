@@ -48,7 +48,7 @@ copyright = """
 nav = [
   {"Головна" = "index.md"},
   { "Тимчасовий Захист" = [
-    "temporary-protection/index.md",
+    "temporary-protection/about.md",
     "temporary-protection/tp/acquiring.md",
     "temporary-protection/arc/acquiring.md",
     "temporary-protection/faq.md",
@@ -67,7 +67,9 @@ docs_dir = "docs"
 #
 # Read more: https://zensical.org/docs/customization/#additional-css
 #
-extra_css = ["stylesheets/extra.css"]
+extra_css = [
+  "stylesheets/extra.css"
+]
 
 # With the `extra_javascript` option you can add your own JavaScript to your
 # project to customize the behavior according to your needs.
@@ -194,7 +196,7 @@ features = [
     # When section index pages are enabled, documents can be directly attached
     # to sections, which is particularly useful for providing overview pages.
     # https://zensical.org/docs/setup/navigation/#section-index-pages
-    "navigation.indexes",
+    # "navigation.indexes",
 
     # When instant navigation is enabled, clicks on all internal links will be
     # intercepted and dispatched via XHR without fully reloading the page.
@@ -325,6 +327,12 @@ toggle.name = "Switch to light mode"
 #     { name = "uk - Українська", link = "/", lang = "uk" },
 #     { name = "en - English", link = "/en/", lang = "en" }
 # ]
+
+[project.extra.status]
+new = "Нова інформація"
+updated = "Нещодавно оновлено"
+deprecated = "Застаріла інформація"
+help-wanted = "Потрібна допомога"
 
 
 [[project.extra.social]]
