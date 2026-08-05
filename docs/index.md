@@ -10,7 +10,7 @@ hide:
 
 Тут ви можете знайти інформацію про різні аспекти життя на Кіпрі, зокрема про:
 
-- [Тимчасовий захист](temporary-protection/index.md);
+- [Тимчасовий захист](temporary-protection/about.md);
 - [Джерела пошуку інформації](other/index.md)...
 
 !!! info "Work In Progress"
