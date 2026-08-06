@@ -1,7 +1,7 @@
 [project]
 name = "information"
 version = "0.1.0"
-description = "Add your description here"
+description = "Інформаційний репозиторій що містить туторіали, гайди та іншу корисну інформацію для Українців у Республіці Кіпр"
 readme = "README.md"
 authors = [
     { name = "Pavlo Pohorieltsev", email = "49622129+makisukurisu@users.noreply.github.com" }
