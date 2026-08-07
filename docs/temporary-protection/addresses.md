@@ -17,7 +17,10 @@ icon: material/map-marker
 Телефони для зв'язку:
 - [+357 (22) 308-501](tel:+35722308501)
 
-Тут отримується статус тимчасового захисту (Temporary Protection).
+!!! warning "Увага"
+
+    Тут отримується (та продовжується) статус тимчасового захисту (Temporary Protection). Отримання ARC та картки Residence Permit відбувається у відділеннях міграційної служби (Migration Department), що вказані нижче.
+    Детальніше [тут](./arc/acquiring.md).
 
 ## Migration Department (Nicosia | Нікосія)
 
