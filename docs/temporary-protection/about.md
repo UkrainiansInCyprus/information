@@ -54,6 +54,7 @@ status: updated
 
 - Сторінка Європейської Комісії про тимчасовий захист: [Temporary protection - Migration and Home Affairs - European Commission](https://home-affairs.ec.europa.eu/policies/migration-and-asylum/asylum-eu/temporary-protection_en#related-links "Загалом про тимчасовий захист на сайті Європейської Комісії")
 - Головна сторінка Asylum Service Кіпру: [Asylum Service](https://www.gov.cy/mip-as/en/ "Головна сторінка Asylum Service")
+- База даних міжнародного захисту в Європі: [Forms of protection - Cyprus | DIP EUAA](https://dip.euaa.europa.eu/countries/cyprus/forms-protection-cyprus)
 
 **Інші**:
 

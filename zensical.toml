@@ -52,6 +52,7 @@ nav = [
     "temporary-protection/tp/acquiring.md",
     "temporary-protection/arc/acquiring.md",
     "temporary-protection/tp/extension.md",
+    "temporary-protection/tp/after.md",
     {"Інше" = [
       "temporary-protection/faq.md",
       "temporary-protection/addresses.md",
