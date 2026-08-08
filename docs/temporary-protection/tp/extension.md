@@ -1,6 +1,5 @@
 ---
 icon: material/autorenew
-status: new
 ---
 
 # Продовження тимчасового захисту
