@@ -1,5 +1,6 @@
 ---
 icon: material/map-marker
+status: updated
 ---
 
 # Адреси
@@ -12,7 +13,7 @@ icon: material/map-marker
 
 На мапі: [Google Maps](https://maps.app.goo.gl/JFLKT976rkR7tEVc8), [OpenStreetMap](https://www.openstreetmap.org/way/538077342)
 
-Години роботи: 07:30 - 14:00, Пн-Пт (Останній "вхід" о 13:30)
+Години роботи: 08:00 - 14:00, Пн-Пт (Останній "вхід" о 13:30)
 
 Телефони для зв'язку:
 - [+357 (22) 308-501](tel:+35722308501)
